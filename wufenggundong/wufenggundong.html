@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	*{
+		margin:0px;
+		padding: 0px;
+	}
+	#div1{
+		height: 281px;
+		width: 1320px;
+		position: relative;
+		margin:10px auto;
+		overflow: hidden;
+	}
+	#div1 ul{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+
+	}
+	#div1 ul li{
+		float: left;
+		width: 310px;
+		height: 281px;
+		list-style: none;
+		margin: 0px 10px;
+	}
+	
+	
+</style>
+<body>
+<a href="javascript:;">向左</a>
+<a href="javascript:;">向右</a>
+<div id="div1">
+	<ul>
+		<li id="oimg1"><img src="images/gundong_05.jpg"></li>
+		<li><img src="images/gundong_07.jpg"></li>
+		<li><img src="images/gundong_09.jpg"></li>
+		<li id="oimg"><img src="images/gundong_12.jpg"></li>
+	</ul>
+</div>
+
+<script type'="text/javascript">
+	var div1=document.getElementById('div1');
+	var oUl=div1.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+	var speed=-4;//自定义刚开始向左移动
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//图添加两套
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+160+'px';//计算ul的总的长度
+
+	//整个图片的移动功能
+	function move()
+	{
+
+		if(oUl.offsetLeft<-oUl.offsetWidth/2)
+		{
+			oUl.style.left='0';
+		}
+		if(oUl.offsetLeft>0)
+		{
+			oUl.style.left=-oUl.offsetWidth/2+'px';
+		}
+		oUl.style.left=oUl.offsetLeft+speed+'px';
+	
+	}
+
+
+
+
+	var timer=setInterval(move,30);
+
+	
+
+	//鼠标的移入和移出
+	div1.onmouseover=function()
+	{
+		clearInterval(timer);
+	}
+	div1.onmouseout=function()
+	{
+		timer=setInterval(move,30);
+	}
+
+
+
+
+	//箭头部分
+	document.getElementsByTagName('a')[0].onclick=function()
+	{
+		speed=-4;//可以修改
+	}
+	document.getElementsByTagName('a')[1].onclick=function(){
+		speed=4;//速度可以修改
+	}
+</script>
+</body>
+</html>
